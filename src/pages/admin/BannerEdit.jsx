@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { Upload, Save, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
+import imageCompression from 'browser-image-compression';
 
 const BannerEdit = () => {
     const { id } = useParams();
@@ -47,8 +48,6 @@ const BannerEdit = () => {
         };
         fetchBanner();
     }, [id, userInfo, navigate]);
-
-    import imageCompression from 'browser-image-compression';
 
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0];
