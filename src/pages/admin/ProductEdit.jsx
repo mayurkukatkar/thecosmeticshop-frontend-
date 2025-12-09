@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
+import imageCompression from 'browser-image-compression';
+
 const ProductEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -52,14 +54,24 @@ const ProductEdit = () => {
 
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0];
-        const formData = new FormData();
-        formData.append('image', file);
         setUploading(true);
+
+        const options = {
+            maxSizeMB: 0.8,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true,
+        };
+
         try {
+            const compressedFile = await imageCompression(file, options);
+            const formData = new FormData();
+            formData.append('image', compressedFile);
+
             const config = { headers: { 'Content-Type': 'multipart/form-data' } };
             const { data } = await axios.post('/api/upload', formData, config);
             setImage(data); // Primary image
             setUploading(false);
+            // toast.success('Image uploaded'); // Add toast if desired, though not in original
         } catch (error) {
             console.error(error);
             setUploading(false);
@@ -68,10 +80,19 @@ const ProductEdit = () => {
 
     const uploadGalleryHandler = async (e) => {
         const file = e.target.files[0];
-        const formData = new FormData();
-        formData.append('image', file);
         setUploading(true);
+
+        const options = {
+            maxSizeMB: 0.8,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true,
+        };
+
         try {
+            const compressedFile = await imageCompression(file, options);
+            const formData = new FormData();
+            formData.append('image', compressedFile);
+
             const config = { headers: { 'Content-Type': 'multipart/form-data' } };
             const { data } = await axios.post('/api/upload', formData, config);
             setImages([...images, data]); // Append to gallery
