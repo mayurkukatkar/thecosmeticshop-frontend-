@@ -54,8 +54,8 @@ const BannerEdit = () => {
         setUploading(true);
 
         const options = {
-            maxSizeMB: 0.8,
-            maxWidthOrHeight: 1920,
+            maxSizeMB: 3,
+            maxWidthOrHeight: 3840,
             useWebWorker: true,
         };
 
