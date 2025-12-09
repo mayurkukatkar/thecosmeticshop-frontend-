@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand-pink: #FFF0F5;
+    --color-brand-cream: #FDFBF7;
+    --color-brand-text: #2D2D2D;
+    --color-brand-accent: #EC4899;
+    --color-brand-accent-hover: #DB2777;
+
+    --font-sans: "Outfit", sans-serif;
+}
+
+body {
+    background-color: var(--color-brand-cream);
+    color: var(--color-brand-text);
+    font-family: var(--font-sans);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
