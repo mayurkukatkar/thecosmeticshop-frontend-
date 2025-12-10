@@ -72,7 +72,7 @@ const Home = () => {
     return (
         <div className="bg-brand-cream min-h-screen font-sans">
             {/* Hero Section */}
-            <div className="relative min-h-[600px] w-full bg-gray-900 overflow-hidden group">
+            <div className="relative min-h-[500px] md:min-h-[600px] w-full bg-gray-900 overflow-hidden group">
                 {/* Background Slides */}
                 {banners.length > 0 ? (
                     banners.map((banner, index) => (
@@ -94,9 +94,9 @@ const Home = () => {
                 )}
 
                 {/* Content */}
-                <div className="relative container mx-auto px-6 md:px-12 h-full min-h-[600px] flex items-center text-white z-10">
-                    <div className="max-w-3xl space-y-6 animate-fade-in-up">
-                        <h1 className="text-5xl md:text-7xl font-bold drop-shadow-lg leading-tight">
+                <div className="relative container mx-auto px-6 md:px-12 h-full min-h-[500px] md:min-h-[600px] flex items-center text-white z-10">
+                    <div className="max-w-3xl space-y-4 md:space-y-6 animate-fade-in-up pt-16 md:pt-0">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold drop-shadow-lg leading-tight">
                             {banners.length > 0 ? (
                                 <>
                                     {currentBanner.title.split(' ').slice(0, 2).join(' ')} <br />
@@ -108,12 +108,12 @@ const Home = () => {
                                 <>Unlock Your <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-white">Inner Radiance</span></>
                             )}
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-200 font-light max-w-xl leading-relaxed">
+                        <p className="text-base md:text-lg lg:text-xl text-gray-200 font-light max-w-xl leading-relaxed">
                             {/* Static description for now as it's not in banner model usually, or use title if short */}
                             Discover our premium range of organic cosmetics designed to highlight your natural beauty.
                         </p>
                         <div className="pt-4">
-                            <Link to={currentBanner.link || "/products"} className="group bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-bold transition transform hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-flex items-center gap-3">
+                            <Link to={currentBanner.link || "/products"} className="group bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-bold transition transform hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-flex items-center gap-3">
                                 Shop Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
@@ -125,23 +125,23 @@ const Home = () => {
                     <>
                         <button
                             onClick={prevBanner}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition opacity-0 group-hover:opacity-100"
+                            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition md:opacity-0 md:group-hover:opacity-100"
                         >
-                            <ArrowRight className="w-6 h-6 rotate-180" />
+                            <ArrowRight className="w-5 h-5 md:w-6 md:h-6 rotate-180" />
                         </button>
                         <button
                             onClick={nextBanner}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition opacity-0 group-hover:opacity-100"
+                            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition md:opacity-0 md:group-hover:opacity-100"
                         >
-                            <ArrowRight className="w-6 h-6" />
+                            <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
 
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
+                        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
                             {banners.map((_, idx) => (
                                 <button
                                     key={idx}
                                     onClick={() => setCurrentBannerIndex(idx)}
-                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentBannerIndex ? 'bg-brand-accent w-8' : 'bg-white/50 hover:bg-white'}`}
+                                    className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${idx === currentBannerIndex ? 'bg-brand-accent w-6 md:w-8' : 'bg-white/50 hover:bg-white'}`}
                                 />
                             ))}
                         </div>
@@ -150,8 +150,8 @@ const Home = () => {
             </div>
 
             {/* Features Grid (Trust Strip Redesign) */}
-            <section className="py-16 bg-white border-b border-gray-100">
-                <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <section className="py-12 md:py-16 bg-white border-b border-gray-100">
+                <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                     {[
                         { icon: Truck, title: "Free Shipping", desc: "On all orders over ₹999" },
                         { icon: ShieldCheck, title: "Secure Payment", desc: "100% secure checkout process" },
@@ -184,7 +184,7 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                         {products.slice(0, 4).map((product, index) => (
                             <Link
                                 to={`/product/${product._id}`}
@@ -245,7 +245,7 @@ const Home = () => {
                         We blend nature's finest ingredients with modern science to create products that are safe, effective, and ethical.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
                         <div className="p-8 bg-white/60 backdrop-blur rounded-3xl border border-white shadow-sm hover:shadow-lg transition">
                             <div className="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3 hover:rotate-6 transition">
                                 <Leaf size={32} />

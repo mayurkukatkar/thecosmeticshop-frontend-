@@ -39,28 +39,30 @@ const Cart = () => {
                     {/* Cart Items List */}
                     <div className="lg:w-2/3 space-y-4">
                         {cartItems.map(item => (
-                            <div key={item._id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center gap-6 relative group">
-                                <div className="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0">
+                            <div key={item._id} className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-row items-start md:items-center gap-4 md:gap-6 relative group">
+                                <div className="w-20 h-20 md:w-24 md:h-24 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0">
                                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                 </div>
 
-                                <div className="flex-1 text-center sm:text-left">
-                                    <h3 className="text-lg font-bold text-gray-900 mb-1">{item.name}</h3>
-                                    <p className="text-sm text-gray-500 mb-2">{item.category}</p>
-                                    <p className="text-brand-accent font-bold">₹{item.price}</p>
-                                </div>
+                                <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 pr-8 md:pr-12">
+                                    <div className="flex-1">
+                                        <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 line-clamp-1">{item.name}</h3>
+                                        <p className="text-xs md:text-sm text-gray-500 mb-1 md:mb-2">{item.category}</p>
+                                        <p className="text-brand-accent font-bold">₹{item.price}</p>
+                                    </div>
 
-                                <div className="flex items-center gap-4 bg-gray-50 rounded-full px-4 py-2">
-                                    <button onClick={() => updateQty(item._id, 'dec')} className="p-1 hover:text-brand-accent transition"><Minus size={16} /></button>
-                                    <span className="font-bold w-4 text-center">{item.qty}</span>
-                                    <button onClick={() => updateQty(item._id, 'inc')} className="p-1 hover:text-brand-accent transition"><Plus size={16} /></button>
+                                    <div className="flex items-center gap-3 bg-gray-50 rounded-full px-3 py-1.5 md:px-4 md:py-2 self-start md:self-auto">
+                                        <button onClick={() => updateQty(item._id, 'dec')} className="p-1 hover:text-brand-accent transition"><Minus size={14} /></button>
+                                        <span className="font-bold w-4 text-center text-sm md:text-base">{item.qty}</span>
+                                        <button onClick={() => updateQty(item._id, 'inc')} className="p-1 hover:text-brand-accent transition"><Plus size={14} /></button>
+                                    </div>
                                 </div>
 
                                 <button
                                     onClick={() => removeFromCart(item._id)}
-                                    className="p-3 text-gray-400 hover:text-red-500 sm:absolute sm:top-6 sm:right-6 transition"
+                                    className="absolute top-4 right-4 p-2 text-gray-400 hover:text-red-500 transition hover:bg-red-50 rounded-full"
                                 >
-                                    <Trash2 size={20} />
+                                    <Trash2 size={18} />
                                 </button>
                             </div>
                         ))}
