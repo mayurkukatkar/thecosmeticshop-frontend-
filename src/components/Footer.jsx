@@ -19,7 +19,7 @@ const Footer = () => {
                             <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors">
                                 <Facebook size={18} />
                             </a>
-                            <a href="https://www.instagram.com/thecosmeticshop2024" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors">
                                 <Instagram size={18} />
                             </a>
                             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors">
@@ -58,11 +58,11 @@ const Footer = () => {
                         <ul className="space-y-4">
                             <li className="flex items-start space-x-3">
                                 <MapPin size={20} className="text-brand-accent mt-1 flex-shrink-0" />
-                                <span>At - Gondi digras, Post - yenwa, Tah- Katol, Dist-Nagpur- 441302</span>
+                                <span>123, Main Street, City Center, State - 400001</span>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Phone size={20} className="text-brand-accent flex-shrink-0" />
-                                <span>+91 7385452148</span>
+                                <span>+91 1234567890</span>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Mail size={20} className="text-brand-accent flex-shrink-0" />
