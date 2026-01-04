@@ -10,7 +10,7 @@ const Footer = () => {
                     {/* Brand Column */}
                     <div>
                         <Link to="/" className="inline-block mb-6">
-                            <span className="text-2xl font-bold text-white tracking-tight">TheCosmeticShop</span>
+                            <span className="text-2xl font-bold text-white tracking-tight">The Product Shop</span>
                         </Link>
                         <p className="text-gray-400 mb-6 leading-relaxed">
                             Discover your inner radiance with our premium collection of organic and scientifically formulated beauty products.
@@ -66,7 +66,7 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Mail size={20} className="text-brand-accent flex-shrink-0" />
-                                <span>info@thecosmeticshop.in</span>
+                                <span>info@theproductshop.in</span>
                             </li>
                         </ul>
                     </div>
@@ -74,7 +74,7 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p className="mb-4 md:mb-0">&copy; {new Date().getFullYear()} The Cosmetic Shop. All rights reserved.</p>
+                    <p className="mb-4 md:mb-0">&copy; {new Date().getFullYear()} The Product Shop. All rights reserved.</p>
                     <div className="flex items-center space-x-6">
                         <div className="flex space-x-2">
                             {/* Placeholder generic payment icons or text */}

@@ -240,7 +240,7 @@ const Home = () => {
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full filter blur-3xl translate-x-1/3 translate-y-1/3"></div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 mb-6">Why Choose The Cosmetic Shop?</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 mb-6">Why Choose The Product Shop?</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
                         We blend nature's finest ingredients with modern science to create products that are safe, effective, and ethical.
                     </p>
