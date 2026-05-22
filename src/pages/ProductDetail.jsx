@@ -300,7 +300,7 @@ Please let me know how to proceed with payment and shipping. Thank you!`;
     };
 
     return (
-        <div className="min-h-screen bg-brand-cream font-sans py-0 md:py-12 pb-24 md:pb-12">
+        <div className="min-h-screen bg-brand-cream font-sans py-0 md:py-12 pb-40 md:pb-12">
             <div className="container mx-auto px-0 md:px-4">
                 {/* Breadcrumbs - Desktop only */}
                 <div className="hidden md:flex items-center text-sm text-gray-500 mb-8 space-x-2 px-4 md:px-0">
@@ -702,7 +702,7 @@ Please let me know how to proceed with payment and shipping. Thank you!`;
             )}
 
             {/* Sticky Bottom Action Bar for Mobile Viewports */}
-            <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 p-4 pb-safe md:hidden flex items-center gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.06)]">
+            <div className="fixed bottom-[56px] left-0 right-0 z-40 bg-white border-t border-gray-100 p-4 md:hidden flex items-center gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.06)]">
                 {product.countInStock > 0 ? (
                     <>
                         <button
