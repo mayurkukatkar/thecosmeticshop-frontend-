@@ -62,7 +62,8 @@ const Shop = () => {
         } else if (sortBy === 'price-high') {
             result.sort((a, b) => b.price - a.price);
         } else {
-            // Newest logic (if backend sends createdAt, otherwise assumption)
+            // Sort by newest (createdAt)
+            result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
 
         setFilteredProducts(result);
