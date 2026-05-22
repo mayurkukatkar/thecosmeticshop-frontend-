@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowRight, CheckCircle, ShieldCheck, Truck, Lock, Star, Mail, Heart, Eye, Leaf, Droplet } from 'lucide-react';
+import { ArrowRight, CheckCircle, ShieldCheck, Truck, Lock, Star, Mail, Heart, Eye, Leaf, Droplet, Award, Scissors, Shirt } from 'lucide-react';
 import { CATEGORIES } from '../utils/categories';
 
 const Home = () => {
@@ -63,16 +63,16 @@ const Home = () => {
     };
 
     const currentBanner = banners.length > 0 ? banners[currentBannerIndex] : {
-        image: 'https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?auto=format&fit=crop&q=80&w=1200&h=600',
-        title: 'Glow Better. Every Day.',
+        image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&q=90&w=1920',
+        title: 'Royal Ethnic Wear Collection',
         link: '/products',
-        subtitle: 'New Collection 2024'
+        subtitle: 'Handcrafted Luxury Indian Wear'
     };
 
     return (
         <div className="bg-brand-cream min-h-screen font-sans">
             {/* Hero Section */}
-            <div className="relative min-h-[500px] md:min-h-[600px] w-full bg-gray-900 overflow-hidden group">
+            <div className="relative min-h-[320px] sm:min-h-[450px] md:min-h-[600px] w-full bg-gray-900 overflow-hidden group">
                 {/* Background Slides */}
                 {banners.length > 0 ? (
                     banners.map((banner, index) => (
@@ -94,27 +94,26 @@ const Home = () => {
                 )}
 
                 {/* Content */}
-                <div className="relative container mx-auto px-6 md:px-12 h-full min-h-[500px] md:min-h-[600px] flex items-center text-white z-10">
-                    <div className="max-w-3xl space-y-4 md:space-y-6 animate-fade-in-up pt-16 md:pt-0">
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold drop-shadow-lg leading-tight">
+                <div className="relative container mx-auto px-6 md:px-12 h-full min-h-[320px] sm:min-h-[450px] md:min-h-[600px] flex items-center text-white z-10">
+                    <div className="max-w-3xl space-y-3 sm:space-y-4 md:space-y-6 animate-fade-in-up pt-10 sm:pt-16 md:pt-0">
+                        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold drop-shadow-lg leading-tight">
                             {banners.length > 0 ? (
                                 <>
                                     {currentBanner.title.split(' ').slice(0, 2).join(' ')} <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-white">
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-white">
                                         {currentBanner.title.split(' ').slice(2).join(' ')}
                                     </span>
                                 </>
                             ) : (
-                                <>Unlock Your <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-white">Inner Radiance</span></>
+                                <>Royal <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-white">Ethnic Wear</span></>
                             )}
                         </h1>
-                        <p className="text-base md:text-lg lg:text-xl text-gray-200 font-light max-w-xl leading-relaxed">
-                            {/* Static description for now as it's not in banner model usually, or use title if short */}
-                            Discover our premium range of organic cosmetics designed to highlight your natural beauty.
+                        <p className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 font-light max-w-xl leading-relaxed">
+                            Discover our premium range of handcrafted luxury apparel designed to showcase the timeless elegance of Indian heritage.
                         </p>
-                        <div className="pt-4">
-                            <Link to={currentBanner.link || "/products"} className="group bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-bold transition transform hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-flex items-center gap-3">
-                                Shop Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <div className="pt-2 sm:pt-4">
+                            <Link to={currentBanner.link || "/products"} className="group bg-white text-gray-900 px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full text-sm sm:text-base md:text-lg font-bold transition transform hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-flex items-center gap-2 sm:gap-3">
+                                Shop Now <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
                     </div>
@@ -155,7 +154,7 @@ const Home = () => {
                     {[
                         { icon: Truck, title: "Free Shipping", desc: "On all orders over ₹999" },
                         { icon: ShieldCheck, title: "Secure Payment", desc: "100% secure checkout process" },
-                        { icon: Leaf, title: "100% Organic", desc: "Natural ingredients only" },
+                        { icon: Award, title: "Authentic Handloom", desc: "100% pure certified heritage weave" },
                         { icon: CheckCircle, title: "Easy Returns", desc: "Hassle-free 30 day returns" },
                     ].map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition duration-300">
@@ -240,32 +239,32 @@ const Home = () => {
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full filter blur-3xl translate-x-1/3 translate-y-1/3"></div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 mb-6">Why Choose The Product Shop?</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 mb-6 font-serif">Why Choose Chawke Fashion?</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
-                        We blend nature's finest ingredients with modern science to create products that are safe, effective, and ethical.
+                        We celebrate heritage textiles, premium craftsmanship, and custom tailoring to bring you timeless elegance.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
                         <div className="p-8 bg-white/60 backdrop-blur rounded-3xl border border-white shadow-sm hover:shadow-lg transition">
-                            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3 hover:rotate-6 transition">
-                                <Leaf size={32} />
+                            <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3 hover:rotate-6 transition">
+                                <Award size={32} />
                             </div>
-                            <h3 className="text-xl font-bold mb-3">100% Vegan & Cruelty Free</h3>
-                            <p className="text-gray-500">No animals were harmed in the making of our products. Certified ethical.</p>
+                            <h3 className="text-xl font-bold mb-3 font-serif">Artisanal Craftsmanship</h3>
+                            <p className="text-gray-500">Every garment is handcrafted by master weavers and artisans using heritage Indian techniques.</p>
                         </div>
                         <div className="p-8 bg-white/60 backdrop-blur rounded-3xl border border-white shadow-sm hover:shadow-lg transition">
-                            <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform -rotate-2 hover:-rotate-4 transition">
-                                <Droplet size={32} />
+                            <div className="w-16 h-16 bg-amber-100 text-brand-gold rounded-2xl flex items-center justify-center mx-auto mb-6 transform -rotate-2 hover:-rotate-4 transition">
+                                <Shirt size={32} />
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Dermatologically Tested</h3>
-                            <p className="text-gray-500">Safe for all skin types. Rigorously tested for safety and efficacy.</p>
+                            <h3 className="text-xl font-bold mb-3 font-serif">Premium Fabrics & Silks</h3>
+                            <p className="text-gray-500">Sourced from the finest hubs—pure Banarasi silk, soft organzas, and exquisite cottons.</p>
                         </div>
                         <div className="p-8 bg-white/60 backdrop-blur rounded-3xl border border-white shadow-sm hover:shadow-lg transition">
-                            <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3 hover:rotate-6 transition">
-                                <Star size={32} />
+                            <div className="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3 hover:rotate-6 transition">
+                                <Scissors size={32} />
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Premium Ingredients</h3>
-                            <p className="text-gray-500">Sourced from the finest locations around the world for maximum quality.</p>
+                            <h3 className="text-xl font-bold mb-3 font-serif">Custom Tailored Fit</h3>
+                            <p className="text-gray-500">Designed to drape beautifully. We offer customization services to ensure a perfect fit.</p>
                         </div>
                     </div>
                 </div>
