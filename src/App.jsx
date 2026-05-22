@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -29,8 +29,35 @@ import { Toaster } from 'react-hot-toast';
 
 import OrderSuccess from './pages/OrderSuccess';
 import ScrollToTop from './components/ScrollToTop';
+import SplashScreen from './components/SplashScreen';
 
 function App() {
+  const [showSplash, setShowSplash] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    const hasShown = sessionStorage.getItem('chawke_splash_shown');
+    if (!hasShown) {
+      setShowSplash(true);
+      
+      // Start fade out animation at 2.0 seconds
+      const fadeTimer = setTimeout(() => {
+        setIsFading(true);
+      }, 2000);
+
+      // Unmount splash screen at 2.6 seconds (after fade animation completes)
+      const removeTimer = setTimeout(() => {
+        setShowSplash(false);
+        sessionStorage.setItem('chawke_splash_shown', 'true');
+      }, 2600);
+
+      return () => {
+        clearTimeout(fadeTimer);
+        clearTimeout(removeTimer);
+      };
+    }
+  }, []);
+
   return (
     <AuthProvider>
       <CartProvider>
@@ -38,6 +65,7 @@ function App() {
           <ScrollToTop />
           <div className="flex flex-col min-h-screen">
             <Toaster position="top-center" />
+            {showSplash && <SplashScreen isFading={isFading} />}
 
             <Routes>
               {/* Public Routes with Header and Footer */}
