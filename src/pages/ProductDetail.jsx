@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CartContext } from '../context/CartContext';
-import { Star, Truck, ShieldCheck, Heart, Share2, Plus, Minus, ArrowRight, Check, Droplets, Sparkles, AlertCircle } from 'lucide-react';
+import { Star, Truck, ShieldCheck, Heart, Share2, Plus, Minus, ArrowRight, Check, Droplets, Sparkles, AlertCircle, MessageCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const ProductDetail = () => {
@@ -64,6 +64,30 @@ const ProductDetail = () => {
         }
         addToCart(product, quantity);
         navigate('/checkout');
+    };
+
+    const handleWhatsAppBuy = () => {
+        if (product.countInStock === 0) {
+            toast.error("Sorry, this item is out of stock");
+            return;
+        }
+        
+        const phoneNumber = "+919876543210"; 
+        const currentUrl = window.location.href;
+        
+        const message = `Hello Chawke Fashion! I would like to purchase the following item:
+
+🛍️ *Product:* ${product.name}
+🏷️ *Price:* ₹${product.price}
+📦 *Quantity:* ${quantity}
+🔗 *Product Link:* ${currentUrl}
+🖼️ *Product Image:* ${product.image}
+
+Please let me know how to proceed with payment and shipping. Thank you!`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9+]/g, '')}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     // Calculate discount percentage
@@ -203,12 +227,20 @@ const ProductDetail = () => {
                                 </button>
                             </div>
                             {product.countInStock > 0 && (
-                                <button
-                                    onClick={handleBuyNow}
-                                    className="w-full mt-3 h-12 md:h-14 rounded-full font-bold text-lg shadow-xl shadow-brand-accent/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-2 bg-brand-accent text-white hover:bg-brand-accent-hover"
-                                >
-                                    Buy Now <ArrowRight size={18} className="ml-2" />
-                                </button>
+                                <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                                    <button
+                                        onClick={handleBuyNow}
+                                        className="flex-1 h-12 md:h-14 rounded-full font-bold text-lg shadow-xl shadow-brand-accent/20 transition transform hover:-translate-y-1 flex items-center justify-center gap-2 bg-brand-accent text-white hover:bg-brand-accent-hover"
+                                    >
+                                        Buy Now <ArrowRight size={18} />
+                                    </button>
+                                    <button
+                                        onClick={handleWhatsAppBuy}
+                                        className="flex-1 h-12 md:h-14 rounded-full font-bold text-lg shadow-xl shadow-green-200 transition transform hover:-translate-y-1 flex items-center justify-center gap-2 bg-[#25D366] text-white hover:bg-[#20ba5a]"
+                                    >
+                                        <MessageCircle size={20} fill="currentColor" /> Buy via WhatsApp
+                                    </button>
+                                </div>
                             )}
                         </div>
                     </div>
