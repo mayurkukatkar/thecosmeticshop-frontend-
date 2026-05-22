@@ -148,25 +148,57 @@ const Home = () => {
                 )}
             </div>
 
-            {/* Features Grid (Trust Strip Redesign) */}
-            <section className="py-12 md:py-16 bg-white border-b border-gray-100">
-                <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-                    {[
-                        { icon: Truck, title: "Free Shipping", desc: "On all orders over ₹999" },
-                        { icon: ShieldCheck, title: "Secure Payment", desc: "100% secure checkout process" },
-                        { icon: Award, title: "Authentic Handloom", desc: "100% pure certified heritage weave" },
-                        { icon: CheckCircle, title: "Easy Returns", desc: "Hassle-free 30 day returns" },
-                    ].map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition duration-300">
-                            <div className="p-3 bg-brand-pink/50 rounded-full text-brand-accent">
-                                <feature.icon size={24} />
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-gray-800 text-lg">{feature.title}</h3>
-                                <p className="text-gray-500 text-sm mt-1">{feature.desc}</p>
-                            </div>
-                        </div>
-                    ))}
+            {/* Curated Collections / Category Showcase */}
+            <section className="py-20 bg-white border-b border-gray-100">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <span className="text-brand-accent font-bold tracking-wider uppercase text-xs bg-brand-pink/50 px-3 py-1 rounded-full">
+                            Handcrafted Heritage
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-bold font-serif text-gray-900 mt-3 mb-4 animate-fade-in">
+                            Curated Collections
+                        </h2>
+                        <div className="h-0.5 w-16 bg-brand-gold mx-auto mb-4"></div>
+                        <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                            Explore our exquisite ranges of traditional Indian wear, curated to bring you the finest artisanal craftsmanship and premium fabrics.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                        {CATEGORIES.map((category) => (
+                            <Link
+                                key={category.id}
+                                to={`/products?category=${encodeURIComponent(category.name)}`}
+                                className="group relative h-[380px] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-end p-6 bg-gray-100"
+                            >
+                                {/* Category Image with hover scaling */}
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                                    style={{ backgroundImage: `url(${category.image})` }}
+                                />
+                                
+                                {/* Dark Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent transition-opacity duration-300 group-hover:from-black/90 group-hover:via-black/50" />
+
+                                {/* Interactive Content Box */}
+                                <div className="relative z-10 text-center w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h3 className="text-white font-serif font-bold text-xl md:text-2xl tracking-wider mb-2">
+                                        {category.name}
+                                    </h3>
+                                    
+                                    {/* Small preview of subcategories */}
+                                    <p className="text-amber-200/90 text-[10px] tracking-widest uppercase mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-1">
+                                        {category.subcategories.map(s => s.name).slice(0, 2).join(' | ')}
+                                    </p>
+
+                                    {/* Action button */}
+                                    <div className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-white/10 backdrop-blur-xs border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-brand-green transition duration-300">
+                                        View Range <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </section>
 
