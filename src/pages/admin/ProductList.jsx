@@ -2,10 +2,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-import { Edit, Trash2, Plus } from 'lucide-react';
+import { Edit, Trash2, Plus, Loader2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
+    const [creating, setCreating] = useState(false);
     const { userInfo } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -27,20 +29,27 @@ const ProductList = () => {
             try {
                 const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
                 await axios.delete(`/api/products/${id}`, config);
+                toast.success('Product deleted successfully');
                 fetchProducts();
             } catch (error) {
-                alert(error.message);
+                toast.error(error.response?.data?.message || error.message);
             }
         }
     };
 
     const createProductHandler = async () => {
+        setCreating(true);
+        const loadingToast = toast.loading('Initializing product draft...');
         try {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
             const { data } = await axios.post('/api/products', {}, config);
+            toast.dismiss(loadingToast);
+            toast.success('Product draft created!');
             navigate(`/admin/product/${data._id}/edit`);
         } catch (error) {
-            alert(error.response?.data?.message || error.message);
+            toast.dismiss(loadingToast);
+            setCreating(false);
+            toast.error(error.response?.data?.message || error.message);
         }
     };
 
@@ -48,8 +57,21 @@ const ProductList = () => {
         <div className="container mx-auto">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Products</h1>
-                <button onClick={createProductHandler} className="bg-brand-accent text-white px-4 py-2 rounded-lg flex items-center hover:bg-brand-accent-hover transition shadow-sm font-medium">
-                    <Plus className="w-4 h-4 mr-2" /> Create Product
+                <button 
+                    onClick={createProductHandler} 
+                    disabled={creating}
+                    className="bg-brand-accent text-white px-4 py-2 rounded-lg flex items-center hover:bg-brand-accent-hover disabled:opacity-50 disabled:cursor-not-allowed transition shadow-sm font-medium"
+                >
+                    {creating ? (
+                        <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Creating...
+                        </>
+                    ) : (
+                        <>
+                            <Plus className="w-4 h-4 mr-2" /> Create Product
+                        </>
+                    )}
                 </button>
             </div>
             {/* Desktop Table View */}
