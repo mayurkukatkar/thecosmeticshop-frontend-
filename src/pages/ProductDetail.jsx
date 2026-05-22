@@ -12,12 +12,23 @@ const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1);
     const [activeTab, setActiveTab] = useState('overview');
     const [activeImage, setActiveImage] = useState('');
+    const [whatsappNumber, setWhatsappNumber] = useState('+919876543210');
     const { addToCart } = useContext(CartContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
+                // Fetch WhatsApp configuration
+                try {
+                    const { data: waConfig } = await axios.get('/api/config/public/whatsappNumber');
+                    if (waConfig && waConfig.value) {
+                        setWhatsappNumber(waConfig.value);
+                    }
+                } catch (waErr) {
+                    console.error("Error fetching WhatsApp configuration:", waErr);
+                }
+
                 const { data } = await axios.get(`/api/products/${id}`);
                 setProduct(data);
                 // Set initial image (prefer explicit image field, fallback to first in images array)
@@ -72,7 +83,7 @@ const ProductDetail = () => {
             return;
         }
         
-        const phoneNumber = "+919876543210"; 
+        const phoneNumber = whatsappNumber; 
         const currentUrl = window.location.href;
         
         const message = `Hello Chawke Fashion! I would like to purchase the following item:

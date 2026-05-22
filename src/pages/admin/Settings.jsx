@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-import { Save, Mail } from 'lucide-react';
+import { Save, Mail, MessageCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Settings = () => {
     const [deliveryEmail, setDeliveryEmail] = useState('');
+    const [whatsappNumber, setWhatsappNumber] = useState('');
     const [loading, setLoading] = useState(true);
     const { userInfo } = useContext(AuthContext);
 
@@ -15,8 +16,23 @@ const Settings = () => {
                 const config = {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 };
-                const { data } = await axios.get('/api/config/deliveryEmail', config);
-                setDeliveryEmail(data.value || '');
+
+                // Fetch delivery email
+                try {
+                    const { data } = await axios.get('/api/config/deliveryEmail', config);
+                    setDeliveryEmail(data.value || '');
+                } catch (err) {
+                    console.error("Error fetching delivery email setting:", err);
+                }
+
+                // Fetch WhatsApp number
+                try {
+                    const { data } = await axios.get('/api/config/whatsappNumber', config);
+                    setWhatsappNumber(data.value || '');
+                } catch (err) {
+                    console.error("Error fetching WhatsApp number setting:", err);
+                }
+
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching settings:", error);
@@ -36,6 +52,7 @@ const Settings = () => {
                 },
             };
             await axios.put('/api/config/deliveryEmail', { value: deliveryEmail }, config);
+            await axios.put('/api/config/whatsappNumber', { value: whatsappNumber }, config);
             toast.success('Settings Updated');
         } catch (error) {
             toast.error(error.response?.data?.message || 'Update failed');
@@ -62,6 +79,21 @@ const Settings = () => {
                             placeholder="Enter email address"
                             value={deliveryEmail}
                             onChange={(e) => setDeliveryEmail(e.target.value)}
+                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent/20 transition"
+                        />
+                    </div>
+
+                    <div className="border-t pt-6 border-gray-100">
+                        <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+                            <MessageCircle className="text-brand-accent" /> WhatsApp Configurations
+                        </h2>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">WhatsApp Order Number</label>
+                        <p className="text-xs text-gray-500 mb-2">Orders initiated via the 'Buy via WhatsApp' button will be directed to this number.</p>
+                        <input
+                            type="text"
+                            placeholder="e.g. +919876543210"
+                            value={whatsappNumber}
+                            onChange={(e) => setWhatsappNumber(e.target.value)}
                             className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent/20 transition"
                         />
                     </div>
