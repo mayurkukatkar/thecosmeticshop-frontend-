@@ -15,7 +15,7 @@ import {
     Sparkles, 
     Layers, 
     FileText,
-    Percent
+    Plus
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import imageCompression from 'browser-image-compression';
