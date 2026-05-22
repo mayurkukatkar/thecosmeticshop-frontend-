@@ -85,7 +85,7 @@ const Header = () => {
                             alt="Chawke Fashion"
                             className={`transition-all duration-300 object-contain rounded-full shadow-xs ${isHeaderSolid ? 'h-10 md:h-12' : 'h-12 md:h-16'}`}
                         />
-                        <span className={`font-serif font-bold text-xl md:text-2xl tracking-widest uppercase transition-colors duration-300 hidden sm:block ${isHeaderSolid ? 'text-brand-green' : 'text-white'}`}>
+                        <span className={`font-serif font-bold text-base sm:text-xl md:text-2xl tracking-widest uppercase transition-colors duration-300 ${isHeaderSolid ? 'text-brand-green' : 'text-white'}`}>
                             Chawke Fashion
                         </span>
                     </Link>
@@ -128,7 +128,7 @@ const Header = () => {
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-2 border ${isHeaderSolid ? 'bg-brand-pink border-brand-accent/20' : 'bg-white/20 border-white/30 backdrop-blur'}`}>
                                             <User className={`w-4 h-4 ${isHeaderSolid ? 'text-brand-accent' : 'text-white'}`} />
                                         </div>
-                                        <span className="font-medium text-sm hidden lg:block">{userInfo.name}</span>
+                                         <span className="font-medium text-sm">{userInfo.name}</span>
                                     </button>
                                     {/* Dropdown */}
                                     <div className="absolute right-0 top-full pt-2 w-48 hidden group-hover:block z-50">
