@@ -1,11 +1,53 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { CartContext } from '../context/CartContext';
-import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, ArrowLeft } from 'lucide-react';
+import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, ArrowLeft, MessageCircle } from 'lucide-react';
 
 const Cart = () => {
     const { cartItems, removeFromCart, updateQty } = useContext(CartContext);
     const navigate = useNavigate();
+    const [whatsappNumber, setWhatsappNumber] = useState('+919876543210');
+
+    useEffect(() => {
+        const fetchWaConfig = async () => {
+            try {
+                const { data: waConfig } = await axios.get('/api/config/public/whatsappNumber');
+                if (waConfig && waConfig.value) {
+                    setWhatsappNumber(waConfig.value);
+                }
+            } catch (waErr) {
+                console.error("Error fetching WhatsApp configuration:", waErr);
+            }
+        };
+        fetchWaConfig();
+    }, []);
+
+    const handleWhatsAppBuy = () => {
+        const phoneNumber = whatsappNumber;
+        
+        const itemsSummary = cartItems.map((item, index) => {
+            return `${index + 1}. 🛍️ *${item.name}*
+   🏷️ *Price:* ₹${item.price}
+   📦 *Qty:* ${item.qty}
+   🔗 *Product:* ${window.location.origin}/product/${item._id}`;
+        }).join('\n\n');
+
+        const message = `Hello Chawke Fashion! I would like to place an order for the following items from my cart:
+
+${itemsSummary}
+
+-------------------------
+💵 *Subtotal:* ₹${subtotal}
+🚚 *Shipping:* ${shipping === 0 ? 'Free' : '₹' + shipping}
+💰 *Total Amount:* ₹${total}
+
+Please let me know how to proceed with payment and shipping. Thank you!`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9+]/g, '')}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+    };
 
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
     const shipping = subtotal > 999 ? 0 : 50;
@@ -96,9 +138,19 @@ const Cart = () => {
 
                             <button
                                 onClick={() => navigate('/checkout')}
-                                className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded-xl font-bold shadow-lg shadow-pink-200 transition transform hover:scale-105 flex justify-between px-6 items-center"
+                                className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded-xl font-bold shadow-lg shadow-brand-accent/20 transition transform hover:scale-105 flex justify-between px-6 items-center"
                             >
                                 <span>Checkout</span>
+                                <ArrowRight size={20} />
+                            </button>
+
+                            <button
+                                onClick={handleWhatsAppBuy}
+                                className="w-full mt-3 bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 rounded-xl font-bold shadow-lg shadow-green-100 transition transform hover:scale-105 flex justify-between px-6 items-center"
+                            >
+                                <span className="flex items-center gap-2">
+                                    <MessageCircle size={20} fill="currentColor" /> Buy via WhatsApp
+                                </span>
                                 <ArrowRight size={20} />
                             </button>
 
