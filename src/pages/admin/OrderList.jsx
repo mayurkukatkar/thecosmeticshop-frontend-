@@ -82,7 +82,8 @@ const OrderList = () => {
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <table className="min-w-full leading-normal">
                     <thead>
                         <tr className="bg-gray-50 border-b border-gray-100">
@@ -97,7 +98,7 @@ const OrderList = () => {
                     <tbody className="divide-y divide-gray-100">
                         {filteredOrders.length === 0 ? (
                             <tr>
-                                <td colspan="6" className="px-5 py-8 text-center text-gray-500">
+                                <td colSpan="6" className="px-5 py-8 text-center text-gray-500">
                                     No orders found matching your filters.
                                 </td>
                             </tr>
@@ -138,6 +139,65 @@ const OrderList = () => {
                             )))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Mobile Card List View */}
+            <div className="md:hidden space-y-4">
+                {filteredOrders.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500 bg-white rounded-2xl border border-gray-100">
+                        No orders found.
+                    </div>
+                ) : (
+                    filteredOrders.map((order) => (
+                        <div key={order._id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div className="flex items-start justify-between">
+                                <div className="flex flex-col">
+                                    <span className="text-xs font-mono text-gray-400">Order: #{order._id.substring(0, 8)}...</span>
+                                    <h3 className="font-bold text-gray-800 text-sm mt-1">
+                                        {order.user ? order.user.name : <span className="text-red-400">Deleted User</span>}
+                                    </h3>
+                                </div>
+                                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${statusColors[order.status] || 'bg-gray-100'}`}>
+                                    {order.status || (order.isDelivered ? 'Delivered' : 'Pending')}
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between items-center text-xs text-gray-500 border-t border-gray-50 pt-2">
+                                <div>
+                                    <span>Date: </span>
+                                    <span className="font-medium text-gray-700">{order.createdAt.substring(0, 10)}</span>
+                                </div>
+                                <div>
+                                    <span>Total: </span>
+                                    <span className="font-bold text-gray-900 text-sm">₹{order.totalPrice}</span>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-between border-t border-gray-50 pt-3 mt-1">
+                                <span className="text-[10px] text-gray-400 uppercase font-medium">Update Status</span>
+                                <div className="flex items-center gap-2">
+                                    <Link to={`/admin/order/${order._id}`} className="p-2 text-gray-500 hover:bg-gray-100 hover:text-brand-accent rounded-lg transition" title="View Details">
+                                        <Eye size={18} />
+                                    </Link>
+                                    <div className="relative inline-block">
+                                        <select
+                                            value={order.status || (order.isDelivered ? 'Delivered' : 'Pending')}
+                                            onChange={(e) => statusHandler(order._id, e.target.value)}
+                                            className="appearance-none bg-white border border-gray-200 hover:border-brand-accent px-3 py-1.5 pr-8 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-brand-accent cursor-pointer transition shadow-sm w-28 text-gray-700"
+                                        >
+                                            <option value="Pending">Pending</option>
+                                            <option value="Confirmed">Confirmed</option>
+                                            <option value="Shipped">Shipped</option>
+                                            <option value="Delivered">Delivered</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                        </select>
+                                        <ChevronDown className="w-3.5 h-3.5 absolute right-2 top-2 text-gray-400 pointer-events-none" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

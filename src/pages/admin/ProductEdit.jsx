@@ -209,18 +209,18 @@ const ProductEdit = () => {
                     <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border p-2 rounded h-24"></textarea>
                 </div>
                 <div>
-                    <label className="block text-gray-700">Ingredients</label>
-                    <textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} className="w-full border p-2 rounded h-24" placeholder="e.g. Aloe Vera, Vitamin C..."></textarea>
+                    <label className="block text-gray-700 font-semibold mb-1">Fabric & Material Details (ingredients)</label>
+                    <textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} className="w-full border p-2 rounded h-24 focus:outline-none focus:ring-1 focus:ring-brand-accent" placeholder="e.g. Pure Banarasi Silk, handloom Zari weave..."></textarea>
                 </div>
                 <div>
-                    <label className="block text-gray-700">Benefits</label>
-                    <textarea value={benefits} onChange={(e) => setBenefits(e.target.value)} className="w-full border p-2 rounded h-24" placeholder="e.g. Hydrating, Anti-aging..."></textarea>
+                    <label className="block text-gray-700 font-semibold mb-1">Features & Care Instructions (benefits)</label>
+                    <textarea value={benefits} onChange={(e) => setBenefits(e.target.value)} className="w-full border p-2 rounded h-24 focus:outline-none focus:ring-1 focus:ring-brand-accent" placeholder="e.g. Dry Clean Only, Embroidered borders, Soft handfeel..."></textarea>
                 </div>
                 <div>
-                    <label className="block text-gray-700">How to Use</label>
-                    <textarea value={howToUse} onChange={(e) => setHowToUse(e.target.value)} className="w-full border p-2 rounded h-24" placeholder="e.g. Apply twice daily..."></textarea>
+                    <label className="block text-gray-700 font-semibold mb-1">Styling & Fit Guide (howToUse)</label>
+                    <textarea value={howToUse} onChange={(e) => setHowToUse(e.target.value)} className="w-full border p-2 rounded h-24 focus:outline-none focus:ring-1 focus:ring-brand-accent" placeholder="e.g. Pair with gold drop earrings and a metallic clutch for festive occasions..."></textarea>
                 </div>
-                <button type="submit" className="w-full bg-pink-600 text-white py-2 rounded font-bold hover:bg-pink-700">
+                <button type="submit" className="w-full bg-brand-accent text-white py-3 rounded-xl font-bold hover:bg-brand-accent-hover transition-all duration-300 shadow-md">
                     Update Product
                 </button>
             </form>

@@ -52,7 +52,8 @@ const ProductList = () => {
                     <Plus className="w-4 h-4 mr-2" /> Create Product
                 </button>
             </div>
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <table className="min-w-full leading-normal">
                     <thead>
                         <tr className="bg-gray-50 border-b border-gray-100">
@@ -86,6 +87,57 @@ const ProductList = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Mobile Card List View */}
+            <div className="md:hidden space-y-4">
+                {products.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500 bg-white rounded-2xl border border-gray-100">
+                        No products found.
+                    </div>
+                ) : (
+                    products.map((product) => (
+                        <div key={product._id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div className="flex items-start justify-between">
+                                <div className="flex items-center gap-3">
+                                    {product.image ? (
+                                        <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded-lg border border-gray-100" />
+                                    ) : (
+                                        <div className="w-12 h-12 bg-brand-pink text-brand-accent rounded-lg flex items-center justify-center font-bold text-xs">
+                                            {product.name.charAt(0)}
+                                        </div>
+                                    )}
+                                    <div>
+                                        <h3 className="font-bold text-gray-800 text-sm line-clamp-1">{product.name}</h3>
+                                        <p className="text-[10px] text-gray-400 font-mono">ID: {product._id.substring(0, 8)}...</p>
+                                    </div>
+                                </div>
+                                <span className="text-xs font-semibold text-brand-accent px-2.5 py-1 bg-brand-pink rounded-full capitalize">
+                                    {product.category}
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between items-center border-t border-gray-50 pt-3">
+                                <div className="flex flex-col">
+                                    <span className="text-[10px] text-gray-400 uppercase font-medium">Price</span>
+                                    <span className="text-sm font-extrabold text-gray-900">₹{product.price}</span>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-[10px] text-gray-400 uppercase font-medium">Brand</span>
+                                    <span className="text-xs text-gray-600 font-medium">{product.brand}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Link to={`/admin/product/${product._id}/edit`} className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
+                                        <Edit className="w-3.5 h-3.5" />
+                                    </Link>
+                                    <button onClick={() => deleteHandler(product._id)} className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 hover:bg-red-100 transition">
+                                        <Trash2 className="w-3.5 h-3.5" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

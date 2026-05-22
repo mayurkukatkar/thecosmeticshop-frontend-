@@ -104,27 +104,27 @@ const Dashboard = () => {
                                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#9CA3AF', fontSize: 12 }} dy={10} />
                                 <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9CA3AF', fontSize: 12 }} />
                                 <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }} />
-                                <Line type="monotone" dataKey="sale" stroke="#EC4899" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} />
+                                <Line type="monotone" dataKey="sale" stroke="#063A2D" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
-
+ 
                 {/* Placeholder for future chart or recent activity */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 className="text-lg font-bold mb-6 text-gray-800">Quick Actions</h3>
                     <div className="space-y-4">
-                        <button onClick={() => navigate('/admin/products')} className="w-full text-left p-4 rounded-lg bg-gray-50 hover:bg-pink-50 hover:text-pink-600 transition flex items-center justify-between group">
+                        <button onClick={() => navigate('/admin/products')} className="w-full text-left p-4 rounded-lg bg-gray-50 hover:bg-brand-pink/50 hover:text-brand-accent transition flex items-center justify-between group">
                             <span className="font-semibold">Manage Inventory</span>
-                            <span className="text-gray-400 group-hover:text-pink-600 text-sm">View Products &rarr;</span>
+                            <span className="text-gray-400 group-hover:text-brand-accent text-sm">View Products &rarr;</span>
                         </button>
-                        <button onClick={() => navigate('/admin/orders')} className="w-full text-left p-4 rounded-lg bg-gray-50 hover:bg-pink-50 hover:text-pink-600 transition flex items-center justify-between group">
+                        <button onClick={() => navigate('/admin/orders')} className="w-full text-left p-4 rounded-lg bg-gray-50 hover:bg-brand-pink/50 hover:text-brand-accent transition flex items-center justify-between group">
                             <span className="font-semibold">Review Orders</span>
-                            <span className="text-gray-400 group-hover:text-pink-600 text-sm">View Orders &rarr;</span>
+                            <span className="text-gray-400 group-hover:text-brand-accent text-sm">View Orders &rarr;</span>
                         </button>
-                        <button onClick={() => navigate('/admin/users')} className="w-full text-left p-4 rounded-lg bg-gray-50 hover:bg-pink-50 hover:text-pink-600 transition flex items-center justify-between group">
+                        <button onClick={() => navigate('/admin/users')} className="w-full text-left p-4 rounded-lg bg-gray-50 hover:bg-brand-pink/50 hover:text-brand-accent transition flex items-center justify-between group">
                             <span className="font-semibold">Manage Users</span>
-                            <span className="text-gray-400 group-hover:text-pink-600 text-sm">View Users &rarr;</span>
+                            <span className="text-gray-400 group-hover:text-brand-accent text-sm">View Users &rarr;</span>
                         </button>
                     </div>
                 </div>

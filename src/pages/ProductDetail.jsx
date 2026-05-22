@@ -220,7 +220,7 @@ const ProductDetail = () => {
                 {/* Sidebar Tabs for Large Screens */}
                 <div className="lg:col-span-3">
                     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-2 overflow-x-auto flex lg:flex-col lg:sticky lg:top-24 gap-2 no-scrollbar">
-                        {['overview', 'ingredients', 'how_to_use', 'reviews'].map(tab => (
+                        {['overview', 'fabric_&_details', 'styling_tips', 'reviews'].map(tab => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
@@ -243,7 +243,7 @@ const ProductDetail = () => {
                             <div className="animate-fade-in space-y-8">
                                 <div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <Sparkles className="text-brand-accent" /> Why You'll Love It
+                                        <Sparkles className="text-brand-gold" /> Why You'll Love It
                                     </h3>
                                     <p className="text-gray-600 leading-relaxed text-lg">
                                         {product.description}
@@ -251,12 +251,12 @@ const ProductDetail = () => {
                                 </div>
 
                                 {benefitsList.length > 0 && (
-                                    <div className="bg-brand-pink/10 rounded-2xl p-8">
-                                        <h4 className="font-bold text-gray-900 mb-4 text-lg">Key Benefits</h4>
+                                    <div className="bg-brand-pink/30 rounded-2xl p-8">
+                                        <h4 className="font-bold text-gray-900 mb-4 text-lg">Features & Care Instructions</h4>
                                         <ul className="grid md:grid-cols-2 gap-4">
                                             {benefitsList.map((benefit, idx) => (
                                                 <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                                    <Check size={20} className="text-brand-accent flex-shrink-0 mt-0.5" />
+                                                    <Check size={20} className="text-brand-gold flex-shrink-0 mt-0.5" />
                                                     <span>{benefit}</span>
                                                 </li>
                                             ))}
@@ -266,26 +266,26 @@ const ProductDetail = () => {
                             </div>
                         )}
 
-                        {activeTab === 'ingredients' && (
+                        {activeTab === 'fabric_&_details' && (
                             <div className="animate-fade-in">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                    <Droplets className="text-brand-accent" /> Ingredients
+                                    <Sparkles className="text-brand-gold" /> Fabric & Details
                                 </h3>
                                 <div className="bg-gray-50 p-6 rounded-2xl text-gray-700 leading-relaxed font-mono text-sm border border-gray-200">
-                                    {product.ingredients || "Ingredients not listed for this product."}
+                                    {product.ingredients || "Fabric details not listed for this product."}
                                 </div>
                                 <p className="mt-4 text-xs text-gray-400">
-                                    * Disclaimer: Ingredients are subject to change at the manufacturer's discretion. For the most complete and up-to-date list of ingredients, refer to the product packaging.
+                                    * Note: Fabric colors may vary slightly due to photographic lighting sources or your device monitor settings.
                                 </p>
                             </div>
                         )}
 
-                        {activeTab === 'how_to_use' && (
+                        {activeTab === 'styling_tips' && (
                             <div className="animate-fade-in">
-                                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Use</h3>
-                                <div className="bg-white border-l-4 border-brand-accent pl-6 py-2">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-serif">Styling & Fit Guide</h3>
+                                <div className="bg-white border-l-4 border-brand-gold pl-6 py-2">
                                     <p className="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
-                                        {product.howToUse || "Usage instructions not provided."}
+                                        {product.howToUse || "Styling guidelines and fit options not provided."}
                                     </p>
                                 </div>
                             </div>

@@ -44,7 +44,8 @@ const UserList = () => {
     return (
         <div className="container mx-auto">
             <h1 className="text-2xl font-bold mb-8 text-gray-800">Users</h1>
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <table className="min-w-full leading-normal">
                     <thead>
                         <tr className="bg-gray-50 border-b border-gray-100">
@@ -83,6 +84,50 @@ const UserList = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Mobile Card List View */}
+            <div className="md:hidden space-y-4">
+                {users.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500 bg-white rounded-2xl border border-gray-100">
+                        No users found.
+                    </div>
+                ) : (
+                    users.map((user) => (
+                        <div key={user._id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div className="flex items-start justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-brand-pink text-brand-accent font-bold flex items-center justify-center text-sm uppercase">
+                                        {user.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-gray-800 text-sm">{user.name}</h3>
+                                        <span className="text-[10px] text-gray-400 font-mono">ID: {user._id.substring(0, 8)}...</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    {user.isAdmin ? (
+                                        <span className="px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Admin</span>
+                                    ) : (
+                                        <span className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">User</span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between items-center border-t border-gray-50 pt-3">
+                                <a href={`mailto:${user.email}`} className="text-xs text-gray-600 flex items-center gap-1.5 hover:text-brand-accent transition">
+                                    <Mail size={14} className="text-gray-400" />
+                                    <span className="truncate max-w-[180px]">{user.email}</span>
+                                </a>
+                                {!user.isAdmin && (
+                                    <button onClick={() => deleteHandler(user._id)} className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 hover:bg-red-100 transition">
+                                        <Trash2 size={16} />
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

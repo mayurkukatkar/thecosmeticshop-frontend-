@@ -1,19 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-    --color-brand-pink: #FFF0F5;
-    --color-brand-cream: #FDFBF7;
-    --color-brand-text: #2D2D2D;
-    --color-brand-accent: #EC4899;
-    --color-brand-accent-hover: #DB2777;
+    --color-brand-pink: #F5EBE1;
+    --color-brand-cream: #FAF7F2;
+    --color-brand-text: #1C2421;
+    --color-brand-green: #063A2D;
+    --color-brand-gold: #D4AF37;
+    --color-brand-gold-hover: #C5A059;
+    --color-brand-maroon: #722F37;
+    --color-brand-accent: #063A2D;
+    --color-brand-accent-hover: #03251D;
 
     --font-sans: "Outfit", sans-serif;
+    --font-serif: "Playfair Display", serif;
 }
 
 body {
     background-color: var(--color-brand-cream);
     color: var(--color-brand-text);
     font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif);
 }
 
 @keyframes fadeInUp {

@@ -81,12 +81,12 @@ const Header = () => {
                     {/* Logo & Brand Name */}
                     <Link to="/" className="flex-shrink-0 group flex items-center gap-2">
                         <img
-                            src="/logo.png"
-                            alt="The Product Shop"
-                            className={`transition-all duration-300 object-contain mix-blend-multiply ${isHeaderSolid ? 'h-12 md:h-16' : 'h-14 md:h-24 md:h-32'}`}
+                            src="/logo.jpg"
+                            alt="Chawke Fashion"
+                            className={`transition-all duration-300 object-contain rounded-full shadow-xs ${isHeaderSolid ? 'h-10 md:h-12' : 'h-12 md:h-16'}`}
                         />
-                        <span className={`font-serif font-bold text-lg md:text-2xl tracking-widest uppercase transition-colors duration-300 hidden sm:block ${isHeaderSolid ? 'text-brand-text' : 'text-white'}`}>
-                            The Product Shop
+                        <span className={`font-serif font-bold text-xl md:text-2xl tracking-widest uppercase transition-colors duration-300 hidden sm:block ${isHeaderSolid ? 'text-brand-green' : 'text-white'}`}>
+                            Chawke Fashion
                         </span>
                     </Link>
 
